@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+const A = ({ href, ...p }) =>
+  href?.startsWith('/') ? <Link to={href} {...p} /> : <a href={href} {...p} />;
 
 const ROUTES = { home: '/', lostFound: '/lostfound', aspirasi: '/aspirasi' };
 
@@ -66,7 +70,26 @@ const CSS = `
 .kd-dark .nav-glass{background:rgba(12,22,18,.3);border-color:rgba(255,255,255,.14);box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08)}
 .kd-dark .nav-glass.sc{background:rgba(12,22,18,.5)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
-${DARK_CSS}`;
+
+${DARK_CSS}
+.kd-dark{color:#e8f3ee!important}
+.kd-dark .text-slate-900{color:#e8f3ee!important}
+.kd-dark .text-slate-800{color:#dce9e3!important}
+.kd-dark .text-slate-700{color:#cbd8d2!important}
+.kd-dark .text-slate-600{color:#b5c4bd!important}
+.kd-dark .text-slate-500{color:#94a7a0!important}
+.kd-dark .text-slate-400{color:#7f938b!important}
+.kd-dark .text-slate-300{color:#6f837b!important}
+.kd-dark .bg-white{background-color:#0f1b17!important}
+.kd-dark .bg-white\\/60{background-color:rgba(15,27,23,.6)!important}
+.kd-dark .bg-slate-50\\/60{background-color:rgba(255,255,255,.04)!important}
+.kd-dark .bg-slate-100{background-color:rgba(255,255,255,.07)!important}
+.kd-dark .border-slate-100{border-color:rgba(255,255,255,.07)!important}
+.kd-dark .border-slate-200{border-color:rgba(255,255,255,.1)!important}
+.kd-dark .border-slate-300{border-color:rgba(255,255,255,.16)!important}
+.kd-dark input,.kd-dark textarea,.kd-dark select{color:#e8f3ee!important;background:#0f1b17!important}
+.kd-dark ::placeholder{color:#70847c!important}
+`;
 
 function Reveal({ children, className = '', delay = 0 }) {
   const ref = useRef(null);
@@ -125,17 +148,21 @@ const ASPIRASI = [
 const CATS = ['Semua Kategori', 'Fasilitas & Sarpras', 'Akademik & Perkuliahan', 'Keamanan', 'Kesejahteraan'];
 
 const FAQ = [
-  ['key', 'Bagaimana cara mengambil barang temuan yang sudah diamankan di Pos Satpam?', 'Bawa KTM dan tunjukkan bukti kepemilikan (foto, nomor seri, atau ciri khusus). Petugas akan memverifikasi sebelum barang diserahkan.'],
-  ['shield', 'Apakah identitas saya aman saat mengirimkan aspirasi atau keluhan fasilitas?', 'Aman. Identitas dilindungi SSO terverifikasi dan hanya dapat dilihat admin berwenang. Kamu dapat memilih tampil sebagai anonim.'],
-  ['auto_awesome', 'Berapa lama proses pencocokan AI Smart Match pada barang hilang?', 'Biasanya hanya hitungan detik setelah laporan dikirim, lalu diperbarui otomatis setiap ada temuan baru di 18 pos satpam.'],
+  ['key', 'Bagaimana cara menemukan barang yang hilang?', 'Tunggu orang lain menemukan dan menguhubungi melalui WhatsApp atau cek secara berkala halaman penemuan barang'],
+  ['shield', 'Apakah identitas saya aman saat mengirimkan aspirasi atau keluhan fasilitas?', 'ya, identitas kamu sangat aman. karena identitas dilindungi dan hanya menginput detail barang atau pesan yang disampaikan.'],
+  ['auto_awesome', 'Berapa lama proses menemukan barang?', 'Tergantung seberapa cepat orang lain menemukan barang tersebut di lingkungan kampus dan menghubungi kamu.'],
   ['help', 'Apa yang harus dilakukan jika menemukan barang milik orang lain di kelas atau koridor?', 'Foto barang, buat laporan temuan, lalu serahkan ke Pos Satpam terdekat agar pemilik dapat menghubungi dengan aman.'],
-  ['account_balance', 'Bagaimana alur aspirasi mahasiswa sampai ditindaklanjuti Dekanat dan Sarpras?', 'Aspirasi yang mencapai target dukungan dibahas BEM, diteruskan ke Dekanat dan Biro Sarpras, lalu statusnya dapat dipantau di timeline.'],
+  ['account_balance', 'Bagaimana alur aspirasi mahasiswa sampai ditindaklanjuti Dekanat dan Sarpras?', 'Aspirasi yang mencapai target dukungan dibahas oleh HIMA, diteruskan ke Dekanat dan Biro Sarpras, lalu statusnya dapat dipantau di timeline.'],
 ];
 
 const cardBase = 'bg-white border border-slate-200 rounded-2xl shadow-[0_1px_3px_rgba(15,23,42,.04)] transition-all duration-300 hover:border-slate-300 hover:shadow-[0_14px_24px_-6px_rgba(6,78,59,.14)] hover:-translate-y-1';
 const ease = 'ease-[cubic-bezier(.22,1,.36,1)]';
 
 export default function Homepage() {
+  const navigate = useNavigate();
+
+
+
   const rootRef = useRef(null);
   const toastRef = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -237,7 +264,7 @@ export default function Homepage() {
       <style>{CSS}</style>
       <div className="page-bg" aria-hidden="true" />
 
-      {/* splash atau loading screen */}
+      {/* splash atsu loading screen */}
       {loading && (
         <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 transition-opacity duration-500 ${hide ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
           <div className="relative mb-6">
@@ -255,16 +282,16 @@ export default function Homepage() {
       {/* ini navbar nya */}
       <div className="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3 pointer-events-none">
         <header className={`nav-glass ${scrolled ? 'sc' : ''} pointer-events-auto w-full rounded-full px-2.5 sm:px-3 py-2 flex items-center justify-between gap-3`} style={{ maxWidth: scrolled ? 860 : 1040 }}>
-          <a href={ROUTES.home} className="flex items-center gap-2.5 group pl-1 rounded-full">
+          <A href={ROUTES.home} className="flex items-center gap-2.5 group pl-1 rounded-full">
             <div className="w-9 h-9 rounded-full bg-emerald-700 text-white flex items-center justify-center shadow-sm group-hover:scale-110 group-hover:rotate-6 group-active:scale-95 transition-transform duration-300">
               <Ic n="radar" fill className="!text-[20px]" />
             </div>
             <span className={`${go} text-lg sm:text-xl font-bold text-emerald-800 tracking-tight`}>KampuSmart</span>
-          </a>
+          </A>
 
           <nav className="hidden md:flex items-center gap-1 text-sm">
             {NAV.map((l) => (
-              <a key={l.label} href={l.href} className={`px-4 py-2 rounded-full font-medium transition-all duration-300 active:scale-95 ${l.active ? 'bg-emerald-600/15 text-emerald-800 font-semibold' : 'text-slate-600 hover:bg-emerald-600/10 hover:text-emerald-800 hover:-translate-y-px'}`}>{l.label}</a>
+              <A key={l.label} href={l.href} className={`px-4 py-2 rounded-full font-medium transition-all duration-300 active:scale-95 ${l.active ? 'bg-emerald-600/15 text-emerald-800 font-semibold' : 'text-slate-600 hover:bg-emerald-600/10 hover:text-emerald-800 hover:-translate-y-px'}`}>{l.label}</A>
             ))}
           </nav>
 
@@ -294,8 +321,8 @@ export default function Homepage() {
           </div>
           <nav className="flex flex-col gap-1">
             {NAV.map((l, i) => (
-              <a key={l.label} href={l.href} onClick={() => setMenu(false)} style={{ transitionDelay: menu ? `${150 + i * 70}ms` : '0ms' }}
-                className={`px-4 py-3 rounded-xl font-medium transition-all duration-500 ${ease} active:scale-[.97] ${menu ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'} ${l.active ? 'bg-emerald-50 text-emerald-800' : 'text-slate-600 hover:bg-slate-100 hover:pl-6'}`}>{l.label}</a>
+              <A key={l.label} href={l.href} onClick={() => setMenu(false)} style={{ transitionDelay: menu ? `${150 + i * 70}ms` : '0ms' }}
+                className={`px-4 py-3 rounded-xl font-medium transition-all duration-500 ${ease} active:scale-[.97] ${menu ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'} ${l.active ? 'bg-emerald-50 text-emerald-800' : 'text-slate-600 hover:bg-slate-100 hover:pl-6'}`}>{l.label}</A>
             ))}
           </nav>
           <button onClick={toggleTheme} className="ripple mt-5 w-full flex items-center justify-between px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium text-slate-700 hover:border-emerald-400 active:scale-[.98] transition-all">
@@ -331,7 +358,7 @@ export default function Homepage() {
                   { href: ROUTES.lostFound, icon: 'manage_search', dark: false, title: 'Direktori Lost & Found', cta: 'Buka Direktori', desc: 'Jelajahi inventaris barang temuan di 18 pos satpam, verifikasi kecocokan AI, atau buat tiket pencarian barang hilang Anda.', mi: 'visibility', m1: 'AI Visual Match', m2: '12 Kasus Hari Ini' },
                   { href: ROUTES.aspirasi, icon: 'campaign', dark: true, title: 'Portal Aspirasi & Advokasi', cta: 'Suarakan Aspirasi', desc: 'Dukung petisi kampus, suarakan keluhan fasilitas sarpras, dan kawal realisasi aspirasi langsung ke meja audiensi Dekanat.', mi: 'account_balance', m1: 'Jalur Resmi Dekanat', m2: '3 Agenda Aktif' },
                 ].map((c) => (
-                  <a key={c.title} href={c.href} className="ripple group flex flex-col gap-4 p-5 rounded-2xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:border-emerald-500 hover:shadow-xl hover:-translate-y-1 active:scale-[.98] transition-all duration-300">
+                  <A key={c.title} href={c.href} className="ripple group flex flex-col gap-4 p-5 rounded-2xl border border-slate-200 bg-slate-50/60 hover:bg-white hover:border-emerald-500 hover:shadow-xl hover:-translate-y-1 active:scale-[.98] transition-all duration-300">
                     <div className="flex items-center justify-between">
                       <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-white group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 ${c.dark ? 'bg-emerald-900' : 'bg-emerald-700'}`}><Ic n={c.icon} fill /></div>
                       <span className="text-[11px] font-bold text-emerald-800 flex items-center gap-1">{c.cta}<Ic n="arrow_forward" className="!text-[14px] group-hover:translate-x-1.5 transition-transform duration-300" /></span>
@@ -344,16 +371,16 @@ export default function Homepage() {
                       <span className="flex items-center gap-1"><Ic n={c.mi} className="!text-[14px]" />{c.m1}</span>
                       <span className="text-slate-500">{c.m2}</span>
                     </div>
-                  </a>
+                  </A>
                 ))}
               </div>
 
               <div className="flex flex-wrap items-center gap-2 mt-5 pt-4 border-t border-slate-100">
                 <span className="text-xs font-semibold text-slate-500 flex items-center gap-1 mr-1"><Ic n="bolt" className="!text-[14px]" />Pintasan Cepat:</span>
                 {[['fact_check', 'Cek Status Laporan'], ['map', 'Lihat Peta Pos Satpam'], ['help', 'Panduan Klaim Barang']].map(([i, t]) => (
-                  <a key={t} href={ROUTES.lostFound} className="ripple inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 text-xs font-medium hover:bg-emerald-50 hover:text-emerald-800 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 transition-all duration-300">
+                  <A key={t} href={ROUTES.lostFound} onClick={(e) => { e.preventDefault(); navigate(ROUTES.lostFound); }} className="ripple inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 text-xs font-medium hover:bg-emerald-50 hover:text-emerald-800 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 transition-all duration-300">
                     <Ic n={i} className="!text-[15px]" />{t}
-                  </a>
+                  </A>
                 ))}
               </div>
             </div>
@@ -364,10 +391,10 @@ export default function Homepage() {
                 { i: 'handshake', c: 'bg-emerald-100 text-emerald-800', t: 'Laporkan Temuan', d: 'Isi form dan tunggu pemilik menghubungi', h: ROUTES.lostFound },
                 { i: 'rate_review', c: 'bg-teal-50 text-teal-700', t: 'Tulis Aspirasi Baru', d: 'Kawal suara hingga audiensi', h: ROUTES.aspirasi },
               ].map((q) => (
-                <a key={q.t} href={q.h} className="ripple group p-3.5 rounded-xl border border-slate-200 bg-white hover:border-emerald-500 hover:shadow-lg hover:-translate-y-1 active:scale-[.97] transition-all duration-300 flex items-center gap-3 text-left">
+                <A key={q.t} href={q.h} className="ripple group p-3.5 rounded-xl border border-slate-200 bg-white hover:border-emerald-500 hover:shadow-lg hover:-translate-y-1 active:scale-[.97] transition-all duration-300 flex items-center gap-3 text-left">
                   <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300 ${q.c}`}><Ic n={q.i} fill className="!text-[20px]" /></div>
                   <div><h4 className="font-semibold text-sm">{q.t}</h4><p className="text-xs text-slate-500">{q.d}</p></div>
-                </a>
+                </A>
               ))}
             </div>
           </div>
@@ -411,14 +438,14 @@ export default function Homepage() {
                         </div>
                         <div className="flex sm:flex-col items-center sm:items-end justify-between gap-1 shrink-0">
                           <span className="text-xs px-2 py-1 rounded-md bg-teal-50 text-teal-700 font-bold flex items-center gap-1"><Ic n="psychology" className="!text-[14px]" />{f.ai}</span>
-                          <a href={ROUTES.lostFound} className="text-xs text-emerald-700 font-semibold hover:underline underline-offset-4 active:scale-95 transition">{f.a}</a>
+                          <A href={ROUTES.lostFound} onClick={(e) => { e.preventDefault(); navigate(ROUTES.lostFound); }} className="text-xs text-emerald-700 font-semibold hover:underline underline-offset-4 active:scale-95 transition">{f.a}</A>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <a href={ROUTES.lostFound} className="group mt-auto pt-6 flex items-center justify-center gap-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-700 active:scale-95 transition">
+                  <A href={ROUTES.lostFound} onClick={(e) => { e.preventDefault(); navigate(ROUTES.lostFound); }} className="group mt-auto pt-6 flex items-center justify-center gap-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-700 active:scale-95 transition">
                     Buka Seluruh Direktori Temuan Barang<Ic n="north_east" className="!text-[16px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
+                  </A>
                 </div>
               </Reveal>
 
@@ -443,9 +470,9 @@ export default function Homepage() {
                       </div>
                     ))}
                   </div>
-                  <a href={ROUTES.aspirasi} className="group mt-auto pt-6 flex items-center justify-center gap-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-700 active:scale-95 transition">
+                  <A href={ROUTES.aspirasi} className="group mt-auto pt-6 flex items-center justify-center gap-1.5 text-sm font-semibold text-emerald-800 hover:text-emerald-700 active:scale-95 transition">
                     Buka Seluruh Aspirasi Terbuka<Ic n="north_east" className="!text-[16px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
+                  </A>
                 </div>
               </Reveal>
             </div>
@@ -460,8 +487,8 @@ export default function Homepage() {
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <a href={ROUTES.lostFound} className="ripple inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-400 text-emerald-950 font-semibold text-sm hover:bg-emerald-300 hover:shadow-lg hover:-translate-y-0.5 active:scale-[.97] transition-all duration-300"><Ic n="add_circle" fill className="!text-[18px]" />Laporkan barang mu yang hilang</a>
-                  <a href={ROUTES.lostFound} className="ripple inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white/10 border border-white/25 text-white font-semibold text-sm hover:bg-white/20 hover:-translate-y-0.5 active:scale-[.97] transition-all duration-300">Laporkan barang yang ditemukan</a>
+                  <A href={ROUTES.lostFound} onClick={(e) => { e.preventDefault(); navigate(ROUTES.lostFound); }} className="ripple inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-400 text-emerald-950 font-semibold text-sm hover:bg-emerald-300 hover:shadow-lg hover:-translate-y-0.5 active:scale-[.97] transition-all duration-300"><Ic n="add_circle" fill className="!text-[18px]" />Laporkan barang mu yang hilang</A>
+                  <A href={ROUTES.lostFound} onClick={(e) => { e.preventDefault(); navigate(ROUTES.lostFound); }} className="ripple inline-flex items-center justify-center px-5 py-3 rounded-xl bg-white/10 border border-white/25 text-white font-semibold text-sm hover:bg-white/20 hover:-translate-y-0.5 active:scale-[.97] transition-all duration-300">Laporkan barang yang ditemukan</A>
                 </div>
               </div>
             </Reveal>
@@ -518,7 +545,7 @@ export default function Homepage() {
               <div key={cat} className="anim-up text-center py-14 rounded-2xl border border-dashed border-slate-300 bg-white/60">
                 <Ic n="inbox" className="!text-[40px] text-slate-300" />
                 <p className="font-semibold mt-2">Belum ada aspirasi di kategori ini</p>
-                <a href={ROUTES.aspirasi} className="inline-block mt-3 text-sm font-semibold text-emerald-700 hover:underline underline-offset-4 active:scale-95 transition">Jadilah yang pertama menulis aspirasi</a>
+                <A href={ROUTES.aspirasi} className="inline-block mt-3 text-sm font-semibold text-emerald-700 hover:underline underline-offset-4 active:scale-95 transition">Jadilah yang pertama menulis aspirasi</A>
               </div>
             )}
 
@@ -528,7 +555,7 @@ export default function Homepage() {
                   <h3 className={`${go} text-xl font-bold`}>Punya usulan atau keresahan terkait fasilitas kampus atau hal lain?</h3>
                   <p className="text-emerald-100/85 text-sm mt-1.5 max-w-2xl">Setiap mahasiswa aktif memiliki hak advokasi. Kami menjamin kerahasiaan identitas dan mengawal aspirasi hingga tindak lanjut audiensi dekanat.</p>
                 </div>
-                <a href={ROUTES.aspirasi} className="ripple inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-emerald-800 font-semibold text-sm whitespace-nowrap hover:bg-emerald-50 hover:shadow-lg hover:-translate-y-0.5 active:scale-[.97] transition-all duration-300">Mulai Buat Aspirasi Baru</a>
+                <A href={ROUTES.aspirasi} className="ripple inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-emerald-800 font-semibold text-sm whitespace-nowrap hover:bg-emerald-50 hover:shadow-lg hover:-translate-y-0.5 active:scale-[.97] transition-all duration-300">Mulai Buat Aspirasi Baru</A>
               </div>
             </Reveal>
           </div>
@@ -538,7 +565,6 @@ export default function Homepage() {
         <section className="py-12 md:py-16 bg-white/60 border-y border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-8">
             <Reveal className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold">Teknologi Berkeadilan</span>
               <h2 className={`${go} text-2xl md:text-3xl font-bold tracking-tight mt-1`}>Bagaimana KampuSmart Mengembalikan Barang Anda</h2>
               <p className="text-sm text-slate-500 mt-2">Mengintegrasikan pengenalan gambar kecerdasan buatan dengan jaringan pengamanan fisik pos satpam kampus secara real-time.</p>
             </Reveal>
@@ -591,7 +617,6 @@ export default function Homepage() {
         <section className="py-12 md:py-16 bg-white/60 border-t border-slate-200">
           <div className="max-w-3xl mx-auto px-4 sm:px-8">
             <Reveal className="text-center mb-8">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold"><Ic n="support_agent" className="!text-[14px]" />Pusat Bantuan Civitas</span>
               <h2 className={`${go} text-2xl md:text-3xl font-bold tracking-tight mt-3`}>Pertanyaan yang Sering Diajukan (FAQ)</h2>
               <p className="text-sm text-slate-500 mt-2">Kumpulan panduan praktis dan jawaban resmi seputar penanganan barang hilang dan advokasi suara kampus.</p>
             </Reveal>
@@ -627,7 +652,7 @@ export default function Homepage() {
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-500">
             {['Panduan Verifikasi AI', 'Etika Advokasi', 'Daftar Pos Keamanan', 'Kebijakan Privasi SSO', 'Kontak Satpam & Dekanat'].map((t) => (
-              <a key={t} href="#" className="hover:text-emerald-700 hover:-translate-y-px underline-offset-4 hover:underline active:scale-95 transition-all duration-300">{t}</a>
+              <A key={t} href="#" className="hover:text-emerald-700 hover:-translate-y-px underline-offset-4 hover:underline active:scale-95 transition-all duration-300">{t}</A>
             ))}
           </nav>
         </div>
