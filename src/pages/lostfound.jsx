@@ -762,7 +762,7 @@ export default function PageLostFound() {
       </Modal>
 
       <button aria-label="Kembali ke atas" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`ripple fixed bottom-6 right-5 z-40 w-12 h-12 rounded-full bg-emerald-700 text-white shadow-lg hover:bg-emerald-600 hover:-translate-y-1 hover:shadow-xl active:scale-90 transition-all duration-500 ${ease} ${showTop ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}`}><Ic n="arrow_upward" /></button>
+        className={`ripple fixed bottom-6 left-10 z-40 w-12 h-12 rounded-full bg-emerald-700 text-white shadow-lg hover:bg-emerald-600 hover:-translate-y-1 hover:shadow-xl active:scale-90 transition-all duration-500 ${ease} ${showTop ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}`}><Ic n="arrow_upward" /></button>
 
       <div role="status" aria-live="polite" className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[90] px-5 py-3 rounded-full bg-emerald-900 text-white text-sm font-medium shadow-2xl flex items-center gap-2 transition-all duration-500 ease-[cubic-bezier(.34,1.56,.64,1)] ${toast.show ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-6 scale-90 pointer-events-none'}`}>
         <Ic n="check_circle" fill className="text-emerald-300 !text-[18px]" />{toast.m}

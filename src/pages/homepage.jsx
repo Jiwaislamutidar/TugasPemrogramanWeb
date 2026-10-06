@@ -405,7 +405,6 @@ export default function Homepage() {
             <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="relative flex h-2.5 w-2.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-600 opacity-75" /><span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-700" /></span>
                 </div>
                 <h2 className={`${go} text-2xl md:text-3xl font-bold tracking-tight`}>Pusat Aktivitas Kampus Terkini</h2>
               </div>
