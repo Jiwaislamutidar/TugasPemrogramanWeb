@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const A = ({ href, ...p }) =>
   href?.startsWith('/') ? <Link to={href} {...p} /> : <a href={href} {...p} />;
 
-// Ubah path di sini jika rute berbeda
 const ROUTES = { home: '/', lostFound: '/lostfound', aspirasi: '/aspirasi' };
 const STORAGE_KEY = 'kampusmart-lostfound';
 
@@ -637,7 +636,6 @@ export default function PageLostFound() {
           </div>
         </section>
 
-        {/* daftar */}
         <section id="daftar" className="scroll-mt-24 pb-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-8">
             <div className="bg-white border border-slate-200 rounded-2xl p-3 sm:p-4 shadow-sm space-y-3">

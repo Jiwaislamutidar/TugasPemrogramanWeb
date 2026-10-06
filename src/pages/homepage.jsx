@@ -311,7 +311,6 @@ export default function Homepage() {
         </header>
       </div>
 
-      {/* MOBILE DRAWER */}
       <div className={`fixed inset-0 z-[60] md:hidden transition-[visibility] duration-500 ${menu ? 'visible' : 'invisible'}`}>
         <div onClick={() => setMenu(false)} className={`absolute inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity duration-500 ${menu ? 'opacity-100' : 'opacity-0'}`} />
         <aside className={`absolute right-0 top-0 h-full w-72 max-w-[85%] bg-white p-5 shadow-2xl transition-transform duration-500 ${ease} ${menu ? 'translate-x-0' : 'translate-x-full'}`}>
@@ -407,7 +406,6 @@ export default function Homepage() {
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="relative flex h-2.5 w-2.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-600 opacity-75" /><span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-700" /></span>
-                  <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold">Sinkronisasi Real-Time</span>
                 </div>
                 <h2 className={`${go} text-2xl md:text-3xl font-bold tracking-tight`}>Pusat Aktivitas Kampus Terkini</h2>
               </div>
@@ -658,7 +656,7 @@ export default function Homepage() {
         </div>
       </footer>
 
-      {/* balik ke atas */}
+      {/* button biar balik ke atas */}
       <button aria-label="Kembali ke atas" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className={`ripple fixed bottom-6 right-5 z-40 w-12 h-12 rounded-full bg-emerald-700 text-white shadow-lg hover:bg-emerald-600 hover:-translate-y-1 hover:shadow-xl active:scale-90 transition-all duration-500 ${ease} ${showTop ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}`}>
         <Ic n="arrow_upward" />
