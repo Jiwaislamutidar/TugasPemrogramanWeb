@@ -498,7 +498,7 @@ export default function Homepage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-8">
             <Reveal className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
               <div className="max-w-xl">
-                <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold">Demokrasi Mahasiswa Digital</span>
+                <span className="text-xs uppercase tracking-wider text-emerald-800 font-bold">Aspirasi Mahasiswa</span>
                 <h2 className={`${go} text-2xl md:text-3xl font-bold tracking-tight mt-1`}>Suara Mahasiswa Berdampak</h2>
                 <p className="text-sm text-slate-500 mt-2">Aspirasi mahasiswa dengan dukungan komunitas tertinggi akan diteruskan secara resmi ke Biro Sarana Prasarana dan Dekanat melalui BEM.</p>
               </div>
@@ -564,7 +564,7 @@ export default function Homepage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-8">
             <Reveal className="text-center max-w-2xl mx-auto mb-10">
               <h2 className={`${go} text-2xl md:text-3xl font-bold tracking-tight mt-1`}>Bagaimana KampuSmart Mengembalikan Barang Anda</h2>
-              <p className="text-sm text-slate-500 mt-2">Mengintegrasikan pengenalan gambar kecerdasan buatan dengan jaringan pengamanan fisik pos satpam kampus secara real-time.</p>
+              <p className="text-sm text-slate-500 mt-2">Hubungkan laporanmu dengan pos satpam kampus.</p>
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[

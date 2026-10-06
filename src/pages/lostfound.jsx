@@ -107,6 +107,10 @@ const DARK_CSS = [
 
 const CSS = `
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes bar{from{width:0}to{width:100%}}
+@keyframes pulseRing{0%{transform:scale(.9);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.anim-bar{animation:bar 1.6s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes rip{from{transform:scale(0);opacity:.25}to{transform:scale(1);opacity:0}}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
 .reveal.in{opacity:1;transform:none}
@@ -441,6 +445,8 @@ export default function PageLostFound() {
   const [showTop, setShowTop] = useState(false);
   const [toast, setToast] = useState({ m: '', show: false });
   const [theming, setTheming] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [hide, setHide] = useState(false);
   const [dark, setDark] = useState(() => {
     try { const s = localStorage.getItem('ks-theme'); if (s) return s === 'dark'; } catch (e) {}
     return typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-color-scheme: dark)').matches;
@@ -464,7 +470,16 @@ export default function PageLostFound() {
     };
     add('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap', 'f-text');
     add('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0..1,0', 'f-icon');
+    const t1 = setTimeout(() => setHide(true), 1900);
+    const t2 = setTimeout(() => setLoading(false), 2400);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
+
+  useEffect(() => {
+    if (!loading) return;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = ''; };
+  }, [loading]);
 
   useEffect(() => {
     try { localStorage.setItem('ks-theme', dark ? 'dark' : 'light'); } catch (e) {}
@@ -556,6 +571,18 @@ export default function PageLostFound() {
       <style>{CSS}</style>
       <div className="page-bg" aria-hidden="true" />
 
+      {loading && (
+        <div className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-700 transition-opacity duration-500 ${hide ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <div className="relative mb-6">
+            <span className="absolute inset-0 rounded-3xl bg-emerald-300/40" style={{ animation: 'pulseRing 1.6s ease-out infinite' }} />
+            <div className="relative w-20 h-20 rounded-3xl bg-white flex items-center justify-center shadow-2xl" style={{ animation: 'floaty 2s ease-in-out infinite' }}><Ic n="manage_search" fill className="text-emerald-700 !text-[44px]" /></div>
+          </div>
+          <h1 className={`${go} text-3xl font-bold text-white tracking-tight`}>KampuSmart</h1>
+          <p className="text-emerald-100/80 text-sm mt-1.5">Memuat direktori Lost & Found…</p>
+          <div className="mt-8 w-48 h-1.5 rounded-full bg-white/20 overflow-hidden"><div className="h-full rounded-full bg-emerald-300 anim-bar" /></div>
+        </div>
+      )}
+
       {/* NAVBAR nya */}
       <div className="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3 pointer-events-none">
         <header className={`nav-glass ${scrolled ? 'sc' : ''} pointer-events-auto w-full rounded-full px-2.5 sm:px-3 py-2 flex items-center justify-between gap-3`} style={{ maxWidth: scrolled ? 860 : 1040 }}>
@@ -612,7 +639,7 @@ export default function PageLostFound() {
             </nav>
             <div className="mt-5 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
               <div className="anim-up max-w-2xl" style={{ animationDelay: '.08s' }}>
-                <h1 className={`${go} text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.15]`}>Direktori Lost & Found Kampus</h1>
+                <h1 className={`${go} text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.15]`}>Barang Hilang & Temuan</h1>
                 <p className="text-slate-500 mt-3 leading-relaxed">Cari barangmu yang hilang atau bantu pemiliknya menemukan barang yang kamu temukan. Setiap laporan tampil langsung di sini dan bisa dihubungi lewat WhatsApp.</p>
                 <div className="flex flex-col sm:flex-row gap-3 mt-6">
                   <button onClick={() => openForm('hilang')} className="ripple group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-700 text-white font-semibold text-sm shadow-lg shadow-emerald-900/15 hover:bg-emerald-600 hover:-translate-y-0.5 hover:shadow-xl active:scale-[.97] transition-all duration-300">
