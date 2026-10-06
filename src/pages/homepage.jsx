@@ -658,7 +658,7 @@ export default function Homepage() {
 
       {/* button biar balik ke atas */}
       <button aria-label="Kembali ke atas" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className={`ripple fixed bottom-6 right-5 z-40 w-12 h-12 rounded-full bg-emerald-700 text-white shadow-lg hover:bg-emerald-600 hover:-translate-y-1 hover:shadow-xl active:scale-90 transition-all duration-500 ${ease} ${showTop ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}`}>
+        className={`ripple fixed bottom-6 left-10 z-40 w-12 h-12 rounded-full bg-emerald-700 text-white shadow-lg hover:bg-emerald-600 hover:-translate-y-1 hover:shadow-xl active:scale-90 transition-all duration-500 ${ease} ${showTop ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}`}>
         <Ic n="arrow_upward" />
       </button>
 
