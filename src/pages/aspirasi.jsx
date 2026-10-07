@@ -206,7 +206,7 @@ const SEED = [
   { id: 's6', cat: CATS[5], status: 'selesai', title: 'Jam Operasional Co-Working Perpustakaan Hingga 22:00 Saat Ujian', desc: 'Telah direalisasikan Biro Administrasi Kampus dan berlaku mulai masa UTS semester genap.', author: 'Tim Advokasi BEM Universitas', votes: 1450, comments: 88, at: T0 - 21 * DAY },
 ];
 const STEPS = [
-  ['verified_user', 'Pengajuan & Verifikasi SSO', 'Login SSO kampus aktif mencegah spam, bot, dan laporan fiktif.'],
+  ['verified_user', 'Pengajuan & Verifikasi', 'Login kampus aktif mencegah spam, bot, dan laporan fiktif.'],
   ['how_to_vote', 'Dukungan & Voting', 'Aspirasi yang menembus 1.000 suara otomatis masuk prioritas audiensi.'],
   ['forum', 'Audiensi BEM & Dekanat', 'BEM membawa aspirasi ke Rapat Dengar Pendapat bersama Biro Sarpras.'],
   ['task_alt', 'Realisasi & Monitoring', 'SK, anggaran, dan progres pengerjaan diumumkan terbuka untuk publik.'],
@@ -248,7 +248,7 @@ function AspirasiForm({ open, onClose, onSubmit }) {
         <div className="flex items-start justify-between gap-3 px-5 sm:px-6 pt-5 pb-4 border-b border-slate-100">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center shrink-0"><Ic n="campaign" fill /></div>
-            <div><h2 className={`${go} text-lg sm:text-xl font-bold leading-tight`}>Tulis Aspirasi Baru</h2><p className="text-xs text-slate-500 mt-0.5">Terverifikasi SSO • rata-rata ditinjau BEM &lt; 24 jam</p></div>
+            <div><h2 className={`${go} text-lg sm:text-xl font-bold leading-tight`}>Tulis Aspirasi Baru</h2><p className="text-xs text-slate-500 mt-0.5">Terverifikasi • rata-rata ditinjau BEM &lt; 24 jam</p></div>
           </div>
           <CloseBtn onClick={onClose} />
         </div>
@@ -439,7 +439,7 @@ export default function Aspirasi() {
             <ThemeToggle dark={dark} onToggle={toggleTheme} />
             <div className="hidden sm:flex items-center gap-2.5 pl-1 pr-3 py-1 rounded-full">
               <div className="w-8 h-8 rounded-full ring-2 ring-emerald-200 bg-emerald-700 text-white font-bold text-xs flex items-center justify-center">MR</div>
-              <div className="hidden lg:flex flex-col leading-tight"><span className="text-sm font-semibold">M. Rayhan S.</span><span className="text-[11px] text-emerald-700 flex items-center gap-1"><Ic n="verified" fill className="!text-[12px]" />SSO Terverifikasi</span></div>
+              <div className="hidden lg:flex flex-col leading-tight"><span className="text-sm font-semibold">M. Rayhan S.</span><span className="text-[11px] text-emerald-700 flex items-center gap-1"><Ic n="verified" fill className="!text-[12px]" />Terverifikasi</span></div>
             </div>
             <button aria-label="Buka menu" onClick={() => setMenu(true)} className="ripple md:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-emerald-600/10 active:scale-90 transition-all"><Ic n="menu" className="!text-[24px]" /></button>
           </div>
@@ -468,7 +468,7 @@ export default function Aspirasi() {
             <Ic n="account_balance" className="absolute right-8 bottom-2 !text-[200px] opacity-10 hidden lg:block pointer-events-none" />
             <div className="relative max-w-3xl">
               <h1 className={`${go} text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight`}>Tulis aspirasi, kawal sampai ditindaklanjuti.</h1>
-              <p className="mt-3 text-sm sm:text-base text-emerald-50/85 leading-relaxed">Portal terbuka penyampaian aspirasi dan perbaikan sarana perkuliahan secara transparan. Setiap suara divalidasi akun SSO dan diperjuangkan dalam Rapat Dengar Pendapat berkala.</p>
+              <p className="mt-3 text-sm sm:text-base text-emerald-50/85 leading-relaxed">Portal terbuka penyampaian aspirasi dan perbaikan sarana perkuliahan secara transparan. Setiap suara divalidasi akun dan diperjuangkan dalam Rapat Dengar Pendapat berkala.</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button onClick={() => setForm(true)} className="ripple inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-emerald-800 font-semibold text-sm shadow-md hover:-translate-y-0.5 hover:shadow-xl active:scale-95 transition-all duration-300"><Ic n="edit_note" fill />Buat Aspirasi Baru</button>
                 <a href="#alur" className="ripple inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white/10 border border-white/25 text-white font-semibold text-sm hover:bg-white/20 hover:-translate-y-0.5 active:scale-95 transition-all duration-300"><Ic n="route" />Lihat Alur Proses</a>
@@ -504,7 +504,7 @@ export default function Aspirasi() {
 
           <Reveal>
             <section className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-9 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-sm">
-              <div className="max-w-xl"><h2 className={`${go} text-xl sm:text-2xl font-bold`}>Punya ide atau keluhan seputar fasilitas kampus?</h2><p className="mt-2 text-sm text-slate-500 leading-relaxed">Pilih tampil <b className="text-slate-700">anonim</b> ke publik, namun tetap terverifikasi SSO ke tim Advokasi BEM.</p></div>
+              <div className="max-w-xl"><h2 className={`${go} text-xl sm:text-2xl font-bold`}>Punya ide atau keluhan seputar fasilitas kampus?</h2><p className="mt-2 text-sm text-slate-500 leading-relaxed">Pilih tampil <b className="text-slate-700">anonim</b> ke publik, namun tetap terverifikasi ke tim Advokasi BEM.</p></div>
               <button onClick={() => setForm(true)} className="ripple shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-700 text-white font-semibold text-sm shadow-sm hover:bg-emerald-800 hover:-translate-y-0.5 hover:shadow-lg active:scale-95 transition-all duration-300"><Ic n="edit_note" fill />Tulis Aspirasi Saya</button>
             </section>
           </Reveal>

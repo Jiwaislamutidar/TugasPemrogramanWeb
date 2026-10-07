@@ -301,7 +301,7 @@ export default function Homepage() {
               <div className="w-8 h-8 rounded-full ring-2 ring-emerald-200 bg-emerald-700 text-white font-bold text-xs flex items-center justify-center">MR</div>
               <div className="hidden lg:flex flex-col leading-tight">
                 <span className="text-sm font-semibold">M. Rayhan S.</span>
-                <span className="text-[11px] text-emerald-700 flex items-center gap-1"><Ic n="verified" fill className="!text-[12px]" />SSO Terverifikasi</span>
+                <span className="text-[11px] text-emerald-700 flex items-center gap-1"><Ic n="verified" fill className="!text-[12px]" />Terverifikasi</span>
               </div>
             </button>
             <button aria-label="Buka menu" onClick={() => setMenu(true)} className="ripple md:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-emerald-600/10 active:scale-90 transition-all">
@@ -644,11 +644,11 @@ export default function Homepage() {
       <footer className="bg-white/60 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <div className="flex items-center gap-2"><div className="w-8 h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center"><Ic n="radar" fill className="!text-[18px]" /></div><span className={`${go} font-bold text-emerald-800 text-lg`}>KampusFind</span></div>
-            <p className="text-xs text-slate-500 mt-2 max-w-xs">© 2025 KampusFind Digital Ecosystem. Kolaborasi Resmi BEM & Biro Sarana Prasarana Kampus.</p>
+            <div className="flex items-center gap-2"><div className="w-8 h-8 rounded-lg bg-emerald-700 text-white flex items-center justify-center"><Ic n="radar" fill className="!text-[18px]" /></div><span className={`${go} font-bold text-emerald-800 text-lg`}>KampuSmart</span></div>
+            <p className="text-xs text-slate-500 mt-2 max-w-xs">© 2025 KampuSmart Digital Ecosystem. Kolaborasi Resmi BEM & Biro Sarana Prasarana Kampus.</p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-500">
-            {['Panduan Verifikasi AI', 'Etika Advokasi', 'Daftar Pos Keamanan', 'Kebijakan Privasi SSO', 'Kontak Satpam & Dekanat'].map((t) => (
+            {['Panduan Verifikasi AI', 'Etika Advokasi', 'Daftar Pos Keamanan', 'Kebijakan Privasi', 'Kontak Satpam & Dekanat'].map((t) => (
               <A key={t} href="#" className="hover:text-emerald-700 hover:-translate-y-px underline-offset-4 hover:underline active:scale-95 transition-all duration-300">{t}</A>
             ))}
           </nav>
